@@ -7,7 +7,7 @@
 
 body {
     background: linear-gradient(135deg, #00b4db, #0083b0);
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +20,13 @@ body {
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.1);
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
 }
 
 .search {
@@ -35,6 +41,13 @@ input {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #0083b0;
+    box-shadow: 0 0 5px rgba(0,131,176,0.3);
+    outline: none;
 }
 
 button {
@@ -44,15 +57,30 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
 }
 
 button:hover {
     background: #006687;
+    transform: scale(1.05);
 }
 
 .weather-info {
     text-align: center;
+}
+
+.weather-icon {
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    animation: float 3s ease-in-out infinite;
+    text-indent: -9999px;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
 }
 
 .city {
@@ -75,6 +103,40 @@ button:hover {
     text-transform: capitalize;
 }
 
+.forecast {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.forecast-day {
+    text-align: center;
+    padding: 10px;
+    background: rgba(0,131,176,0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.forecast-day:hover {
+    transform: scale(1.05);
+    background: rgba(0,131,176,0.2);
+}
+
+.forecast-date {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.forecast-temp {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0083b0;
+}
+
 .details {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -86,6 +148,11 @@ button:hover {
 
 .detail-item {
     text-align: center;
+    transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+    transform: scale(1.05);
 }
 
 .detail-label {
@@ -104,4 +171,10 @@ button:hover {
     text-align: center;
     margin-top: 10px;
     display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
